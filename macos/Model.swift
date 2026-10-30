@@ -110,7 +110,6 @@ final class DeskModel: ObservableObject {
 
     var batteries: [FollowerStatus] { followerList.filter { $0.battery != nil } }
 
-    var lowestBattery: Battery? { batteries.compactMap(\.battery).min { $0.percent < $1.percent } }
 }
 
 func followerIcon(_ kind: String) -> String {
@@ -120,16 +119,5 @@ func followerIcon(_ kind: String) -> String {
     case "headset", "headphones": return "headphones"
     case "controller", "gamepad": return "gamecontroller"
     default: return "cable.connector"
-    }
-}
-
-func batterySymbol(_ percent: Int, charging: Bool) -> String {
-    if charging { return "battery.100percent.bolt" }
-    switch percent {
-    case ..<13: return "battery.0percent"
-    case ..<38: return "battery.25percent"
-    case ..<63: return "battery.50percent"
-    case ..<88: return "battery.75percent"
-    default: return "battery.100percent"
     }
 }

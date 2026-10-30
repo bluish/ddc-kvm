@@ -1,14 +1,15 @@
 # Desk (macOS)
 
-The Mac side of [ddc-kvm](../README.md), in the menu bar with Liquid Glass
-(macOS 26+), one icon per panel. The panels use the system's menu bar window
+The Mac side of [ddc-kvm](../README.md), in the menu bar (macOS 26+), one
+monitor icon. The panels use the system's menu bar window
 material with glass controls; panels built from glass cards in a
 `GlassEffectContainer` didn't open. Apple Silicon only.
 
 | Panel | What it does |
 |---|---|
-| Monitor switch | DDC/CI through `IOAVService` (input, brightness, contrast, factory colour reset); the followers go along. Ctrl+Option+Cmd+N hotkeys. |
-| Batteries | every follower with a battery reading (last reading while it's away). The icon shows the lowest. |
+| Computers | DDC/CI through `IOAVService` (input, brightness, contrast, factory colour reset); the followers go along. Ctrl+Option+Cmd+N hotkeys. |
+| Picture | brightness, contrast, factory colour reset |
+| Devices | every follower with its battery (last reading while it's away) |
 
 - **Input Monitoring** is required for HID followers. The grant is tied to
   the app's designated requirement; an ad-hoc signature defaults to the

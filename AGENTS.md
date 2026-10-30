@@ -47,7 +47,7 @@ on one platform are listed on the other with no functions.
 - `kvm input <this machine>` is a safe write: it selects the input already
   shown.
 - macOS: `swiftc -O -o kvmctl KVMCore.swift main.swift` and
-  `swiftc -O -parse-as-library -o Desk KVMCore.swift Model.swift DeskApp.swift`
+  `swiftc -O -parse-as-library -o Desk KVMCore.swift Model.swift Kit.swift DeskApp.swift`
   in a temp dir check the build without installing; `Desk --snapshot <dir>`
   renders the panels to PNGs.
 

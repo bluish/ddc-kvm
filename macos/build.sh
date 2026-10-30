@@ -4,12 +4,19 @@ set -e
 cd "$(dirname "$0")"
 
 swiftc -O -o kvmctl KVMCore.swift main.swift
-swiftc -O -parse-as-library -o Desk KVMCore.swift Model.swift DeskApp.swift
+swiftc -O -parse-as-library -o Desk KVMCore.swift Model.swift Kit.swift DeskApp.swift
 
 app="$HOME/Applications/Desk.app"
 rm -rf "$app"
 mkdir -p "$app/Contents/MacOS"
 cp Desk "$app/Contents/MacOS/Desk"
+set_dir=$(mktemp -d)/AppIcon.iconset
+mkdir -p "$set_dir" "$app/Contents/Resources"
+for size in 16 32 128 256 512; do
+  sips -z $size $size AppIcon.png --out "$set_dir/icon_${size}x${size}.png" >/dev/null
+  sips -z $((size * 2)) $((size * 2)) AppIcon.png --out "$set_dir/icon_${size}x${size}@2x.png" >/dev/null
+done
+iconutil -c icns "$set_dir" -o "$app/Contents/Resources/AppIcon.icns"
 cat > "$app/Contents/Info.plist" <<'EOF'
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -18,6 +25,7 @@ cat > "$app/Contents/Info.plist" <<'EOF'
   <key>CFBundleIdentifier</key><string>io.github.bluish.kvmbar</string>
   <key>CFBundleName</key><string>Desk</string>
   <key>CFBundleExecutable</key><string>Desk</string>
+  <key>CFBundleIconFile</key><string>AppIcon</string>
   <key>CFBundlePackageType</key><string>APPL</string>
   <key>CFBundleShortVersionString</key><string>1.0</string>
   <key>LSMinimumSystemVersion</key><string>26.0</string>
