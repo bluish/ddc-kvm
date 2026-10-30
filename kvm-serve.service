@@ -1,0 +1,11 @@
+[Unit]
+Description=kvm keyboard relay
+After=network-online.target
+
+[Service]
+ExecStart=%h/.local/bin/kvm serve
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=default.target

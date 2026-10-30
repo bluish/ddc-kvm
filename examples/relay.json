@@ -1,0 +1,4 @@
+{
+  "url": "http://<pc-tailnet-ip>:8765/",
+  "token": "<contents of ~/.config/kvm/token on the PC>"
+}

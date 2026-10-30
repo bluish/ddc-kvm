@@ -1,0 +1,45 @@
+{
+  "this": "pc",
+  "monitor": "AW2725D",
+  "modes": [
+    { "name": "standard", "value": "0x00" },
+    { "name": "games", "value": "0x05" }
+  ],
+  "machines": [
+    { "id": "air", "label": "MacBook Air", "icon": "laptopcomputer", "input": "0x0f", "hotkey": 1 },
+    { "id": "pc", "label": "PC", "icon": "pc", "input": "0x11", "hotkey": 3 },
+    { "id": "mini", "label": "Mac mini", "icon": "macmini", "input": "0x12", "hotkey": 2 }
+  ],
+  "followers": [
+    {
+      "name": "MX Master 4",
+      "kind": "mouse",
+      "drivers": [
+        { "type": "hidpp", "device": "MX Master", "hosts": { "air": 1, "pc": 3, "mini": 2 } }
+      ]
+    },
+    {
+      "name": "Keychron K3 Max",
+      "kind": "keyboard",
+      "drivers": [
+        {
+          "type": "leds",
+          "ids": ["3434:0A30"],
+          "arm": ["num", "scroll"],
+          "hosts": { "air": ["num"], "mini": ["scroll"], "pc": [] }
+        },
+        {
+          "type": "rawhid",
+          "ids": ["3434:0A30", "3434:D030"],
+          "hosts": { "air": "C0 02 01 01", "pc": "C0 02 18 02", "mini": "C0 02 02 01" },
+          "ok": 4,
+          "query": "C0 01",
+          "battery": 2,
+          "charging": 3
+        },
+        { "type": "relay" }
+      ]
+    }
+  ],
+  "relay": { "listen": "tailscale", "port": 8765 }
+}

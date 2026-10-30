@@ -1,0 +1,17 @@
+{
+  "this": "pc",
+  "monitor": "DELL U2723QE",
+  "machines": [
+    {
+      "id": "pc",
+      "label": "PC",
+      "input": "0x0f"
+    },
+    {
+      "id": "laptop",
+      "label": "Laptop",
+      "icon": "laptopcomputer",
+      "input": "0x11"
+    }
+  ]
+}
